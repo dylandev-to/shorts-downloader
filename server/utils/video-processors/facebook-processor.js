@@ -1,13 +1,13 @@
-const { ttdl } = require('btch-downloader')
+const { fbdown } = require('btch-downloader')
 
 /**
- * TikTok Video Processor
+ * Facebook Video Processor
  *
  * @param {string} url - The URL of the video
  */
 function download(url) {
     return new Promise((resolve, reject) => {
-        ttdl(url)
+        fbdown(url)
             .then(result => {
                 resolve({
                     info: {},

@@ -13,6 +13,10 @@ function getDomainName(url) {
 module.exports = {
     getDomainName,
     videoProcessor: {
-        tiktok: require("./video-processors/tikok-processor")
+        tiktok: require("./video-processors/tikok-processor"),
+        instagram: require("./video-processors/instagram-processor"),
+        facebook: require("./video-processors/facebook-processor"),
+        twitter: require("./video-processors/twitter-processor"),
+        youtube: require("./video-processors/youtube-processor"),
     }
 }

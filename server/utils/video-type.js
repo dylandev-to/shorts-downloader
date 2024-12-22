@@ -1,7 +1,7 @@
 // Each supported platform, the include tests the domain name.
 const platforms = {
     youtube: {
-        include: ["youtube"],
+        include: ["youtube", "youtu.be", "youtu"],
         type: "buffer"
     },
     tiktok: {
@@ -10,14 +10,14 @@ const platforms = {
     },
     instagram: {
         include: ["instagram"],
-        type: "direct"
+        type: "buffer"
     },
     twitter: {
-        include: ["twitter"],
+        include: ["twitter", "x"],
         type: "direct"
     },
     facebook: {
-        include: ["facebook"],
+        include: ["facebook", "fb", "fb.watch"],
         type: "direct"
     }
 }

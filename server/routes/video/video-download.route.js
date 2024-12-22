@@ -13,14 +13,27 @@ router.post("/", async (req, res) => {
     if (domainName) {
         const plt = getVideoType(domainName);
         if (plt) {
-            switch(plt.platform) {
+            let down;
+            switch (plt.platform) {
                 case "tiktok":
-                    const downTiktok = await videoProcessor.tiktok(url)
-                    if (downTiktok) return res.status(200).json(downTiktok);
+                    down = await videoProcessor.tiktok(url)
+                    break;
+                case "instagram":
+                    down = await videoProcessor.instagram(url)
+                    break;
+                case "facebook":
+                    down = await videoProcessor.facebook(url);
+                    break;
+                case "twitter":
+                    down = await videoProcessor.twitter(url);
+                    break;
+                case "youtube":
+                    down = await videoProcessor.youtube(url);
                     break;
                 default:
                     return res.status(202).send('Not supported platform');
             }
+            if (down) return res.status(200).json(down);
         }
     }
     res.status(204).send('Unknown platform');

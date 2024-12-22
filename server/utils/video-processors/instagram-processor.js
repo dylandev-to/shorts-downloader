@@ -1,13 +1,13 @@
-const { ttdl } = require('btch-downloader')
+const { igdl } = require('btch-downloader')
 
 /**
- * TikTok Video Processor
+ * Instagram Video Processor
  *
  * @param {string} url - The URL of the video
  */
 function download(url) {
     return new Promise((resolve, reject) => {
-        ttdl(url)
+        igdl(url)
             .then(result => {
                 resolve({
                     info: {},
