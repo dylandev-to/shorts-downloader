@@ -10,7 +10,6 @@ function download(url) {
         igdl(url)
             .then(result => {
                 resolve({
-                    info: {},
                     video: result
                 });
             })

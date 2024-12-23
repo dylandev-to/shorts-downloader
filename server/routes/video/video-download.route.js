@@ -33,7 +33,13 @@ router.post("/", async (req, res) => {
                 default:
                     return res.status(202).send('Not supported platform');
             }
-            if (down) return res.status(200).json(down);
+            if (down) {
+                down.info = {
+                    platform: plt.platform,
+                    url
+                }
+                return res.status(200).json(down);
+            }
         }
     }
     res.status(204).send('Unknown platform');

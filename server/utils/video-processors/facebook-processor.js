@@ -10,7 +10,6 @@ function download(url) {
         fbdown(url)
             .then(result => {
                 resolve({
-                    info: {},
                     video: result
                 });
             })

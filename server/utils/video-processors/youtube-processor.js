@@ -1,23 +1,26 @@
-const { youtube } = require('btch-downloader')
+const ytdl = require('ytdl-core');
 
 /**
  * YouTube Video Processor
  *
  * @param {string} url - The URL of the video
  */
-function download(url) {
-    return new Promise((resolve, reject) => {
-        youtube(url)
-            .then(result => {
-                resolve({
-                    info: {},
-                    video: result
-                });
-            })
-            .catch(error => {
-                console.error(error);
-                reject(null);
+async function download(url) {
+    return new Promise(async (resolve, reject) => {
+        if (ytdl.validateURL(url)) {
+            let info = await ytdl.getInfo(url);
+            const format = ytdl.chooseFormat(info.formats, { quality: 'highest' });
+            const videoDetails = info.videoDetails;
+            resolve({
+                video: {
+                    url: format.url,
+                    title: videoDetails.title,
+                    channel: videoDetails.ownerChannelName,
+                    description: videoDetails.description,
+                }
             });
+        }
+        else reject(null);
     });
 }
 

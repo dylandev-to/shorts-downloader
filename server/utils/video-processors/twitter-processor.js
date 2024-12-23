@@ -10,7 +10,6 @@ function download(url) {
         twitter(url)
             .then(result => {
                 resolve({
-                    info: {},
                     video: result
                 });
             })
