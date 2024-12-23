@@ -1,4 +1,5 @@
 const express = require('express');
+const expressUtils = require("./utils/express-utils")
 const app = express();
 
 // Environment Variables
@@ -8,11 +9,12 @@ const {
 } = process.env;
 
 // Express Utils
-app.use(express.json());
+expressUtils(app);
 
 // Router
 app.use("/", require("./routes/router"));
 
+// Starts the app
 app.listen(PORT || 3000, () => {
     console.log(`Running server on: ${PORT}`)
 })

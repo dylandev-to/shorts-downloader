@@ -13,36 +13,41 @@ router.post("/", async (req, res) => {
     if (domainName) {
         const plt = getVideoType(domainName);
         if (plt) {
-            let down;
+            let downPromise;
             switch (plt.platform) {
                 case "tiktok":
-                    down = await videoProcessor.tiktok(url)
+                    downPromise = videoProcessor.tiktok(url)
                     break;
                 case "instagram":
-                    down = await videoProcessor.instagram(url)
+                    downPromise = videoProcessor.instagram(url)
                     break;
                 case "facebook":
-                    down = await videoProcessor.facebook(url);
+                    downPromise = videoProcessor.facebook(url);
                     break;
                 case "twitter":
-                    down = await videoProcessor.twitter(url);
+                    downPromise = videoProcessor.twitter(url);
                     break;
                 case "youtube":
-                    down = await videoProcessor.youtube(url);
+                    downPromise = videoProcessor.youtube(url);
                     break;
                 default:
                     return res.status(202).send('Not supported platform');
             }
-            if (down) {
-                down.info = {
-                    platform: plt.platform,
-                    url
-                }
-                return res.status(200).json(down);
-            }
+            downPromise
+                .then(down => {
+                    down.info = {
+                        platform: plt.platform,
+                        url
+                    }
+                    return res.status(200).json(down);
+                })
+                .catch(y => {
+                    return res.status(200).send("Error procecssing your video");
+                })
         }
+        else res.status(202).send('Not supported platform');
     }
-    res.status(204).send('Unknown platform');
+    else res.status(204).send('Not a valid platform');
 })
 
 module.exports = router;
