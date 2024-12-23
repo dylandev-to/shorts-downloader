@@ -12,7 +12,8 @@ export default {
       colors: {
         background: "#EEEEEE",
         primary: "#000000",
-        secondary: "#444444"
+        secondary: "#444444",
+        light: "#ffffff"
       },
     },
   },

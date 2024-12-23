@@ -7,7 +7,6 @@ export async function getVideo(url) {
             axios.post(apiURL("/video-download"), { url: url })
                 .then((result) => {
                     if (result.status === 200) {
-                        console.log(result)
                         res(result.data);
                         return;
                     }

@@ -7,7 +7,7 @@ import { useEffect, useState } from "react"
 
 function App() {
   // Download info that passes from downloader to download prompt
-  const [downloadInfo, setDownloadInfo] = useState({})
+  const [downloadInfo, setDownloadInfo] = useState(0)
 
   // Logs the download info
   useEffect(() => {

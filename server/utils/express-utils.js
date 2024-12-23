@@ -1,9 +1,10 @@
 const cors = require("cors")
 const express = require("express")
+require("dotenv").config();
 
 // Cors options to allow requests
 const corsOptions = {
-    origin: 'http://localhost:5173',
+    origin: process.env.CORS_ALLOW_URL,
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
     credentials: true,
